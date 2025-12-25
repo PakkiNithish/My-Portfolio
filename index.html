@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakki Nithish | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #030712;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-icon {
+            transition: all 0.3s ease;
+            color: #9ca3af;
+            display: inline-block;
+        }
+
+        .contact-icon:hover {
+            color: #ffffff;
+            transform: scale(1.2);
+        }
+
+        .skill-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #60a5fa;
+            object-fit: cover;
+            box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+        }
+
+        .project-card-wrapper {
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .project-card-wrapper:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        #projects-container:hover .project-card-wrapper:not(:hover) {
+            filter: blur(2px);
+            opacity: 0.6;
+        }
+
+        .cert-card {
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="fixed top-0 w-full z-[100] glass py-4 px-8 flex justify-between items-center">
+        <h1 class="text-xl font-bold gradient-text">PN</h1>
+        <div class="hidden md:flex space-x-8 text-xs uppercase tracking-widest font-bold">
+            <a href="#home" class="hover:text-blue-400 transition">Home</a>
+            <a href="#about" class="hover:text-blue-400 transition">About</a>
+            <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+            <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+            <a href="#certifications" class="hover:text-blue-400 transition">Certifications</a>
+            <a href="#education" class="hover:text-blue-400 transition">Education</a>
+        </div>
+    </nav>
+
+    <section id="home" class="pt-48 pb-20 px-6 text-center max-w-4xl mx-auto">
+        <div class="flex justify-center mb-8">
+            <img src="nithish.jpg" alt="Profile" class="profile-img" />
+        </div>
+        <h2 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">Pakki Nithish</h2>
+        <p class="text-lg text-gray-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+            MERN Stack Developer & Student at KL University.
+            Focused on building quality-driven software and cloud solutions.
+        </p>
+        <div class="flex justify-center items-center space-x-8">
+            <a href="mailto:nithishpakki18@gmail.com" target="_blank" title="nithishpakki18@gmail.com" class="contact-icon text-3xl">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://github.com/PakkiNithish" target="_blank" title="GitHub" class="contact-icon text-3xl">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/pakki-nithish" target="_blank" title="LinkedIn"
+                class="contact-icon text-3xl">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="PakkiNithish_Developer.pdf" target="_blank" title="Download Resume" class="contact-icon text-3xl">
+                <i class="fas fa-file-pdf"></i>
+            </a>
+        </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-6 bg-slate-900/10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-sm font-bold mb-8 uppercase tracking-[0.3em] text-gray-500">About Me</h3>
+            <div class="glass p-10 rounded-3xl">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    I am Pakki Nithish, aspiring to build a career in the software industry within a dynamic and
+                    quality-driven environment.
+                    I am interested in working on real-time software projects and enjoy applying logical thinking to
+                    solve practical problems.
+                    I am currently learning Data Structures and Algorithms (DSA) to strengthen my problem-solving
+                    abilities and to implement efficient and optimized solutions in software applications.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <h3 class="text-center text-sm font-bold mb-20 uppercase tracking-[0.3em] text-gray-500">Technical Arsenal
+            </h3>
+            <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"></div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-bold mb-16 text-center">Featured Projects</h3>
+            <div id="projects-container" class="grid md:grid-cols-2 gap-10">
+
+                <div class="project-card-wrapper">
+                    <div class="glass p-8 rounded-3xl h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-2xl font-bold text-blue-400">Movie Suggestion Website</h4>
+                                <a href="https://github.com/PakkiNithish/TCB_TeluguCinemaBase" target="_blank"
+                                    title="View Source Code" class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">Telugu movie recommendations based on mood, favorite
+                                genres, and viewing style.</p>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-4 text-blue-400 text-xs font-bold uppercase">
+                                <span>React</span><span>JavaScript</span>
+                            </div>
+                            <a href="https://ganderaviteja.github.io/TCB_TeluguCinemaBase/" target="_blank"
+                                class="text-xs font-bold uppercase text-white bg-blue-600/20 px-3 py-1 rounded-full border border-blue-500/30 hover:bg-blue-600/40 transition">Live
+                                Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card-wrapper">
+                    <div class="glass p-8 rounded-3xl h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-2xl font-bold text-purple-400">Salary Prediction Model</h4>
+                                <a href="https://github.com/PakkiNithish/Salary-Prediction" target="_blank"
+                                    class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">ML model using KNN to accurately estimate expected
+                                salaries by identifying patterns from job-related features.</p>
+                        </div>
+                        <div class="flex space-x-4 text-purple-400 text-xs font-bold uppercase">
+                            <span>Python</span><span>ML / KNN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card-wrapper">
+                    <div class="glass p-8 rounded-3xl h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-2xl font-bold text-blue-400">Cattle Monitoring System</h4>
+                                <a href="https://github.com/PakkiNithish/Cattle-Monitoring" target="_blank"
+                                    class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">A system that uses sensors and IoT technology to track
+                                cattle health, location, and activity in real time.</p>
+                        </div>
+                        <div class="flex space-x-4 text-blue-400 text-xs font-bold uppercase">
+                            <span>IoT</span><span>Sensors</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card-wrapper">
+                    <div class="glass p-8 rounded-3xl h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-2xl font-bold text-purple-400">WIFI Controlled RC Car</h4>
+                                <a href="https://github.com/PakkiNithish/WiFi-RC-Car" target="_blank"
+                                    class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">A NodeMCU-based RC car controlled over Wi-Fi with a
+                                surveillance camera providing live video streaming.</p>
+                        </div>
+                        <div class="flex space-x-4 text-purple-400 text-xs font-bold uppercase">
+                            <span>NodeMCU</span><span>Wi-Fi Control</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="py-32 px-6 bg-slate-900/10">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-center text-sm font-bold mb-16 uppercase tracking-[0.3em] text-gray-500">Trainings &
+                Certifications</h3>
+            <div id="certs-grid" class="grid md:grid-cols-2 gap-6"></div>
+        </div>
+    </section>
+
+    <section id="education" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-center text-sm font-bold mb-16 uppercase tracking-[0.3em] text-gray-500">Academic Journey
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-2xl text-center border-blue-500/20">
+                    <p class="text-blue-400 font-bold text-4xl mb-2">9.27</p>
+                    <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">B.Tech CGPA</p>
+                    <p class="text-white mt-4 font-semibold">KL University</p>
+                </div>
+                <div class="glass p-8 rounded-2xl text-center">
+                    <p class="text-green-400 font-bold text-3xl mb-2">84.00%</p>
+                    <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Intermediate</p>
+                    <p class="text-white mt-3 font-medium">Sri Chaitanya Junior College</p>
+                </div>
+                <div class="glass p-8 rounded-2xl text-center">
+                    <p class="text-purple-400 font-bold text-3xl mb-2">10.0</p>
+                    <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Secondary (X) GPA</p>
+                    <p class="text-white mt-3 font-medium">Vivekananda High School</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-600 text-[10px] uppercase tracking-[0.4em] border-t border-white/5">
+        <p>© 2025 Pakki Nithish | KL University | Hayathnagar</p>
+    </footer>
+
+    <script>
+        const skills = [
+            { name: "HTML 5", icon: "fab fa-html5", color: "text-orange-500" },
+            { name: "CSS", icon: "fab fa-css3-alt", color: "text-blue-500" },
+            { name: "JavaScript", icon: "fab fa-js", color: "text-yellow-400" },
+            { name: "React", icon: "fab fa-react", color: "text-blue-400" },
+            { name: "MongoDB", icon: "fas fa-leaf", color: "text-green-500" },
+            { name: "Git", icon: "fab fa-git-alt", color: "text-orange-600" },
+            { name: "GitHub", icon: "fab fa-github", color: "text-white" },
+            { name: "Java", icon: "fab fa-java", color: "text-red-500" },
+            { name: "DSA", icon: "fas fa-code-branch", color: "text-purple-400" }
+        ];
+
+        const certifications = [
+            { title: "MongoDB Associate Developer", issuer: "MongoDB, Virtual", icon: "fas fa-database", color: "text-green-400" },
+            { title: "Oracle Architect Associate", issuer: "Oracle, Virtual", icon: "fas fa-cloud", color: "text-red-400" },
+            { title: "AWS Certified Cloud Practitioner", issuer: "Amazon, Virtual", icon: "fab fa-aws", color: "text-yellow-500" },
+            { title: "RPA Advanced Developer", issuer: "Automation Anywhere, Virtual", icon: "fas fa-robot", color: "text-blue-400" }
+        ];
+
+        // Render Skills
+        const skillsGrid = document.getElementById('skills-grid');
+        skills.forEach(s => {
+            skillsGrid.innerHTML += `
+                <div class="skill-card glass p-8 rounded-2xl flex flex-col items-center text-center group">
+                    <i class="${s.icon} ${s.color} text-4xl mb-4 transition-transform group-hover:scale-110"></i>
+                    <span class="text-white font-bold text-sm uppercase tracking-wider">${s.name}</span>
+                </div>`;
+        });
+
+        // Render Certs
+        const certsGrid = document.getElementById('certs-grid');
+        certifications.forEach(c => {
+            certsGrid.innerHTML += `
+                <div class="glass p-6 rounded-2xl cert-card flex items-start space-x-5">
+                    <div class="p-4 rounded-xl bg-white/5 ${c.color}"><i class="${c.icon} text-2xl"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-lg mb-1">${c.title}</h4>
+                        <p class="text-gray-400 text-xs uppercase font-bold tracking-wider">${c.issuer}</p>
+                    </div>
+                </div>`;
+        });
+    </script>
+</body>
+
+</html>
