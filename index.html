@@ -9,51 +9,84 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            background-color: #030712;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a0f2e 50%, #0f0f1e 100%);
+            background-attachment: fixed;
             color: #f3f4f6;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
         }
 
         .glass {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .gradient-text {
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            background: linear-gradient(135deg, #14b8a6, #06b6d4, #0891b2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #14b8a6, #06b6d4);
+            border-radius: 1px;
         }
 
         .contact-icon {
             transition: all 0.3s ease;
             color: #9ca3af;
             display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .contact-icon:hover {
             color: #ffffff;
-            transform: scale(1.2);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(6, 182, 212, 0.2));
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(20, 184, 166, 0.2);
         }
 
         .skill-card {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1.5px solid rgba(20, 184, 166, 0.2);
+            height: 145px;
         }
 
         .skill-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(96, 165, 250, 0.5);
+            transform: translateY(-12px);
+            border-color: rgba(20, 184, 166, 0.6);
+            box-shadow: 0 20px 40px rgba(20, 184, 166, 0.15);
+            background: rgba(15, 23, 42, 0.8);
         }
 
         .profile-img {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            border: 4px solid #60a5fa;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, #14b8a6, #06b6d4, #0891b2) border-box;
             object-fit: cover;
-            box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+            box-shadow: 0 0 40px rgba(20, 184, 166, 0.4), inset 0 0 40px rgba(20, 184, 166, 0.1);
         }
 
         .project-card-wrapper {
@@ -62,8 +95,13 @@
         }
 
         .project-card-wrapper:hover {
-            transform: scale(1.05);
+            transform: translateY(-15px);
             z-index: 10;
+        }
+
+        .project-card-wrapper:hover .glass {
+            box-shadow: 0 25px 50px rgba(20, 184, 166, 0.2);
+            border-color: rgba(20, 184, 166, 0.4);
         }
 
         #projects-container:hover .project-card-wrapper:not(:hover) {
@@ -73,160 +111,237 @@
 
         .cert-card {
             transition: all 0.3s ease;
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
 
         .cert-card:hover {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(20, 184, 166, 0.5);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.15);
+        }
+
+        /* Skills Categories Styles */
+        .skill-category {
             background: rgba(255, 255, 255, 0.05);
+            color: #9ca3af;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            background: rgba(20, 184, 166, 0.15);
+            color: #14b8a6;
+            border-color: rgba(20, 184, 166, 0.4);
+        }
+
+        .skill-category.active {
+            background: linear-gradient(135deg, #14b8a6, #06b6d4);
+            color: #ffffff;
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
+        }
+
+        .skill-card.small {
+            padding: 2rem;
+        }
+
+        .skill-card.small i {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card.small span {
+            font-size: 0.875rem;
+            line-height: 1.25;
+        }
+
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #14b8a6, #06b6d4);
+            transition: left 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            left: 0;
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(20, 184, 166, 0.2);
+        }
+
+        .stat-card:hover {
+            border-color: rgba(20, 184, 166, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(20, 184, 166, 0.15);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: transparent;
+            border: 1px solid rgba(20, 184, 166, 0.5);
+            color: #14b8a6;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(20, 184, 166, 0.1);
+            border-color: rgba(20, 184, 166, 0.8);
         }
     </style>
 </head>
 
 <body>
-    <nav class="fixed top-0 w-full z-[100] glass py-4 px-8 flex justify-between items-center">
-        <h1 class="text-xl font-bold gradient-text">PN</h1>
-        <div class="hidden md:flex space-x-8 text-xs uppercase tracking-widest font-bold">
-            <a href="#home" class="hover:text-blue-400 transition">Home</a>
-            <a href="#about" class="hover:text-blue-400 transition">About</a>
-            <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
-            <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
-            <a href="#certifications" class="hover:text-blue-400 transition">Certifications</a>
-            <a href="#education" class="hover:text-blue-400 transition">Education</a>
+    <nav class="fixed top-0 w-full z-[100] glass py-4 px-8 flex justify-between items-center border-b border-white/5">
+        <h1 class="text-2xl font-bold gradient-text">PN</h1>
+        <div class="hidden md:flex space-x-12 text-xs uppercase tracking-widest font-semibold">
+            <a href="#home" class="nav-link hover:text-blue-400 transition">Home</a>
+            <a href="#about" class="nav-link hover:text-blue-400 transition">About</a>
+            <a href="#skills" class="nav-link hover:text-blue-400 transition">Skills</a>
+            <a href="#projects" class="nav-link hover:text-blue-400 transition">Projects</a>
+            <a href="#certifications" class="nav-link hover:text-blue-400 transition">Certifications</a>
+            <a href="#education" class="nav-link hover:text-blue-400 transition">Education</a>
         </div>
     </nav>
 
-    <section id="home" class="pt-48 pb-20 px-6 text-center max-w-4xl mx-auto">
-        <div class="flex justify-center mb-8">
+    <section id="home" class="pt-32 pb-20 px-6 text-center max-w-4xl mx-auto">
+        <div class="flex justify-center mb-10">
             <img src="nithish.jpg" alt="Profile" class="profile-img" />
         </div>
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">Pakki Nithish</h2>
-        <p class="text-lg text-gray-400 mb-10 leading-relaxed max-w-2xl mx-auto">
-            Aspiring to be a MERN Stack Developer & Student at KL University.
-            Focused on building quality-driven software and cloud solutions.
+        <h2 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">Pakki Nithish</h2>
+        <p class="text-lg md:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto font-light">
+            Full-Stack Developer & Student at KL University<br>
+            <span class="text-gray-400">Building scalable, quality-driven software and cloud solutions</span>
         </p>
-        <div class="flex justify-center items-center space-x-8">
-            <a href="mailto:nithishpakki18@gmail.com" target="_blank" title="nithishpakki18@gmail.com" class="contact-icon text-3xl">
+        <div class="flex justify-center items-center space-x-4 flex-wrap gap-3">
+            <a href="mailto:nithishpakki18@gmail.com" target="_blank" title="nithishpakki18@gmail.com"
+                class="contact-icon">
                 <i class="fas fa-envelope"></i>
             </a>
-            <a href="https://github.com/PakkiNithish" target="_blank" title="GitHub" class="contact-icon text-3xl">
+            <a href="https://github.com/PakkiNithish" target="_blank" title="GitHub" class="contact-icon">
                 <i class="fab fa-github"></i>
             </a>
             <a href="https://linkedin.com/in/pakki-nithish" target="_blank" title="LinkedIn"
-                class="contact-icon text-3xl">
+                class="contact-icon">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a href="PakkiNithish_Developer.pdf" target="_blank" title="Download Resume" class="contact-icon text-3xl">
+            <a href="PakkiNithish_Developer.pdf" target="_blank" title="Download Resume" class="contact-icon">
                 <i class="fas fa-file-pdf"></i>
             </a>
         </div>
-        </div>
     </section>
 
-    <section id="about" class="py-20 px-6 bg-slate-900/10">
+    <section id="about" class="py-24 px-6">
         <div class="max-w-4xl mx-auto text-center">
-            <h3 class="text-sm font-bold mb-8 uppercase tracking-[0.3em] text-gray-500">About Me</h3>
-            <div class="glass p-10 rounded-3xl">
-                <p class="text-lg text-gray-300 leading-relaxed">
-                    I am Pakki Nithish, aspiring to build a career in the software industry within a dynamic and
-                    quality-driven environment.
-                    I am interested in working on real-time software projects and enjoy applying logical thinking to
-                    solve practical problems.
-                    I am currently learning Data Structures and Algorithms (DSA) to strengthen my problem-solving
-                    abilities and to implement efficient and optimized solutions in software applications.
+            <h3 class="text-sm font-bold mb-12 uppercase tracking-[0.3em] text-gray-400 section-title">About Me</h3>
+            <div class="glass p-12 rounded-xl border border-blue-500/10">
+                <p class="text-lg text-gray-300 leading-relaxed font-light">
+                    I'm Pakki Nithish, a passionate Full-Stack Developer committed to building robust, scalable software solutions. I thrive in dynamic, quality-driven environments where I can apply logical problem-solving to real-world challenges.
+                </p>
+                <p class="text-lg text-gray-300 leading-relaxed font-light mt-4">
+                    Currently mastering Data Structures and Algorithms to enhance my problem-solving capabilities and develop efficient, optimized solutions. I'm particularly interested in cloud technologies and modern development practices.
                 </p>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="py-32">
-        <div class="max-w-6xl mx-auto px-6">
-            <h3 class="text-center text-sm font-bold mb-20 uppercase tracking-[0.3em] text-gray-500">Technical Arsenal
-            </h3>
-            <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"></div>
+    <section id="skills" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-center text-sm font-bold mb-24 uppercase tracking-[0.3em] text-gray-400 section-title">Technical Arsenal</h3>
+            <div class="flex flex-col lg:flex-row gap-16">
+                <!-- Side Categories -->
+                <div class="lg:w-1/4 flex lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
+                    <button class="skill-category active px-6 py-3 rounded-lg font-bold uppercase tracking-widest text-sm transition-all whitespace-nowrap lg:whitespace-normal" data-category="programming">
+                        Programming
+                    </button>
+                    <button class="skill-category px-6 py-3 rounded-lg font-bold uppercase tracking-widest text-sm transition-all whitespace-nowrap lg:whitespace-normal" data-category="web">
+                        Web Technologies
+                    </button>
+                    <button class="skill-category px-6 py-3 rounded-lg font-bold uppercase tracking-widest text-sm transition-all whitespace-nowrap lg:whitespace-normal" data-category="core">
+                        Core Concepts
+                    </button>
+                    <button class="skill-category px-6 py-3 rounded-lg font-bold uppercase tracking-widest text-sm transition-all whitespace-nowrap lg:whitespace-normal" data-category="tools">
+                        Tools
+                    </button>
+                </div>
+
+                <!-- Skills Display -->
+                <div class="lg:w-3/4">
+                    <div id="skills-container" class="grid grid-cols-2 md:grid-cols-3 gap-6 min-h-96">
+                        <!-- Skills will be rendered here -->
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="projects" class="py-32 px-6">
         <div class="max-w-5xl mx-auto">
-            <h3 class="text-3xl font-bold mb-16 text-center">Featured Projects</h3>
+            <h3 class="text-center text-sm font-bold mb-24 uppercase tracking-[0.3em] text-gray-400 section-title">Featured Projects</h3>
             <div id="projects-container" class="grid md:grid-cols-2 gap-10">
 
                 <div class="project-card-wrapper">
-                    <div class="glass p-8 rounded-3xl h-full flex flex-col justify-between">
+                    <div class="glass p-8 rounded-xl h-full flex flex-col justify-between border border-blue-500/10 hover:border-blue-500/30">
                         <div>
                             <div class="flex justify-between items-start mb-4">
-                                <h4 class="text-2xl font-bold text-blue-400">Movie Suggestion Website</h4>
-                                <a href="https://github.com/PakkiNithish/TCB_TeluguCinemaBase" target="_blank"
-                                    title="View Source Code" class="text-gray-400 hover:text-white transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
+                                <h4 class="text-2xl font-bold text-teal-300">Telugu Cine Advisor</h4>
+                                <a href="https://github.com/PakkiNithish/Telugu-Cine-Advisor_Project.git"
+                                    target="_blank" title="View Source Code"
+                                    class="text-gray-400 hover:text-white transition-colors text-xl">
+                                    <i class="fab fa-github"></i>
                                 </a>
                             </div>
-                            <p class="text-gray-400 text-sm mb-6">Telugu movie recommendations based on mood, favorite
-                                genres, and viewing style.</p>
+                            <p class="text-gray-300 text-sm mb-6 leading-relaxed">Telugu movie recommendations based on mood, favorite genres, and viewing style with an intuitive UI.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge">Html</span>
+                            <span class="badge">CSS</span>
+                            <span class="badge">JavaScript</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <div class="flex space-x-4 text-blue-400 text-xs font-bold uppercase">
-                                <span>React</span><span>JavaScript</span>
-                            </div>
-                            <a href="https://ganderaviteja.github.io/TCB_TeluguCinemaBase/" target="_blank"
-                                class="text-xs font-bold uppercase text-white bg-blue-600/20 px-3 py-1 rounded-full border border-blue-500/30 hover:bg-blue-600/40 transition">Live
-                                Demo</a>
+                            <span class="text-xs text-gray-500">Web Project</span>
+                            <a href="https://telugu-cine-advisor.vercel.app/" target="_blank"
+                                class="text-xs font-bold uppercase text-white bg-gradient-to-r from-teal-600 to-cyan-600 px-4 py-2 rounded-full hover:shadow-lg hover:shadow-teal-500/50 transition">Live Demo →</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card-wrapper">
-                    <div class="glass p-8 rounded-3xl h-full flex flex-col justify-between">
+                    <div class="glass p-8 rounded-xl h-full flex flex-col justify-between border border-purple-500/10 hover:border-purple-500/30">
                         <div>
                             <div class="flex justify-between items-start mb-4">
-                                <h4 class="text-2xl font-bold text-purple-400">Salary Prediction Model</h4>
-                                <a href="https://github.com/PakkiNithish/Salary-Prediction" target="_blank"
-                                    class="text-gray-400 hover:text-white transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
+                                <h4 class="text-2xl font-bold text-cyan-300">Netflix Clone</h4>
+                                <a href="https://github.com/PakkiNithish/Netflix-clone.git" target="_blank" class="text-gray-400 hover:text-white transition-colors text-xl">
+                                    <i class="fab fa-github"></i>
                                 </a>
                             </div>
-                            <p class="text-gray-400 text-sm mb-6">ML model using KNN to accurately estimate expected
-                                salaries by identifying patterns from job-related features.</p>
+                            <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                                Netflix-inspired web app using React with Firebase authentication, responsive UI, and dynamic content browsing.
+                            </p>
                         </div>
-                        <div class="flex space-x-4 text-purple-400 text-xs font-bold uppercase">
-                            <span>Python</span><span>ML / KNN</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge">React</span>
+                            <span class="badge">Firebase</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="project-card-wrapper">
-                    <div class="glass p-8 rounded-3xl h-full flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <h4 class="text-2xl font-bold text-blue-400">Cattle Monitoring System</h4>
-                                <a href="https://github.com/PakkiNithish/Cattle-Monitoring" target="_blank"
-                                    class="text-gray-400 hover:text-white transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                            <p class="text-gray-400 text-sm mb-6">A system that uses sensors and IoT technology to track
-                                cattle health, location, and activity in real time.</p>
-                        </div>
-                        <div class="flex space-x-4 text-blue-400 text-xs font-bold uppercase">
-                            <span>IoT</span><span>Sensors</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card-wrapper">
-                    <div class="glass p-8 rounded-3xl h-full flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <h4 class="text-2xl font-bold text-purple-400">WIFI Controlled RC Car</h4>
-                                <a href="https://github.com/PakkiNithish/WiFi-RC-Car" target="_blank"
-                                    class="text-gray-400 hover:text-white transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                            <p class="text-gray-400 text-sm mb-6">A NodeMCU-based RC car controlled over Wi-Fi with a
-                                surveillance camera providing live video streaming.</p>
-                        </div>
-                        <div class="flex space-x-4 text-purple-400 text-xs font-bold uppercase">
-                            <span>NodeMCU</span><span>Wi-Fi Control</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">React Project</span>
+                            <a href="https://nf-clone-app.vercel.app/" target="_blank"
+                                class="text-xs font-bold uppercase text-white bg-gradient-to-r from-cyan-600 to-blue-600 px-4 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-500/50 transition">Live Demo →</a>
                         </div>
                     </div>
                 </div>
@@ -235,71 +350,127 @@
         </div>
     </section>
 
-    <section id="certifications" class="py-32 px-6 bg-slate-900/10">
+    <section id="certifications" class="py-32 px-6">
         <div class="max-w-5xl mx-auto">
-            <h3 class="text-center text-sm font-bold mb-16 uppercase tracking-[0.3em] text-gray-500">Trainings &
-                Certifications</h3>
+            <h3 class="text-center text-sm font-bold mb-24 uppercase tracking-[0.3em] text-gray-400 section-title">Trainings & Certifications</h3>
             <div id="certs-grid" class="grid md:grid-cols-2 gap-6"></div>
         </div>
     </section>
 
     <section id="education" class="py-32 px-6">
         <div class="max-w-5xl mx-auto">
-            <h3 class="text-center text-sm font-bold mb-16 uppercase tracking-[0.3em] text-gray-500">Academic Journey
-            </h3>
+            <h3 class="text-center text-sm font-bold mb-24 uppercase tracking-[0.3em] text-gray-400 section-title">Academic Journey</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-2xl text-center border-blue-500/20">
-                    <p class="text-blue-400 font-bold text-4xl mb-2">9.27</p>
-                    <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">B.Tech CGPA</p>
-                    <p class="text-white mt-4 font-semibold">KL University</p>
+                <div class="stat-card glass p-10 rounded-xl text-center">
+                    <p class="text-teal-300 font-bold text-5xl mb-3">9.33</p>
+                    <p class="text-gray-400 text-xs uppercase font-bold tracking-widest mb-3">B.Tech CGPA</p>
+                    <p class="text-white font-semibold">KL University</p>
+                    <p class="text-gray-500 text-xs mt-2">2023 - 2027</p>
                 </div>
-                <div class="glass p-8 rounded-2xl text-center">
-                    <p class="text-green-400 font-bold text-3xl mb-2">84.00%</p>
-                    <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Intermediate</p>
-                    <p class="text-white mt-3 font-medium">Sri Chaitanya Junior College</p>
+                <div class="stat-card glass p-10 rounded-xl text-center">
+                    <p class="text-cyan-300 font-bold text-5xl mb-3">84%</p>
+                    <p class="text-gray-400 text-xs uppercase font-bold tracking-widest mb-3">Intermediate</p>
+                    <p class="text-white font-semibold">Sri Chaitanya Junior College</p>
+                    <p class="text-gray-500 text-xs mt-2">2021 - 2023</p>
                 </div>
-                <div class="glass p-8 rounded-2xl text-center">
-                    <p class="text-purple-400 font-bold text-3xl mb-2">10.0</p>
-                    <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Secondary (X) GPA</p>
-                    <p class="text-white mt-3 font-medium">Vivekananda High School</p>
+                <div class="stat-card glass p-10 rounded-xl text-center">
+                    <p class="text-teal-300 font-bold text-5xl mb-3">10.0</p>
+                    <p class="text-gray-400 text-xs uppercase font-bold tracking-widest mb-3">Secondary (X) GPA</p>
+                    <p class="text-white font-semibold">Vivekananda High School</p>
+                    <p class="text-gray-500 text-xs mt-2">2019 - 2021</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-gray-600 text-[10px] uppercase tracking-[0.4em] border-t border-white/5">
-        <p>© 2025 Pakki Nithish | KL University | Hayathnagar</p>
+    <footer class="py-16 text-center text-gray-500 text-xs uppercase tracking-[0.3em] border-t border-white/5">
+        <p class="mb-4">© 2025 Pakki Nithish | KL University | Hyderabad</p>
+        <p class="text-gray-600 font-light">Designed & Built with <span class="text-red-500">♥</span> by Pakki Nithish</p>
     </footer>
 
     <script>
-        const skills = [
-            { name: "HTML 5", icon: "fab fa-html5", color: "text-orange-500" },
-            { name: "CSS", icon: "fab fa-css3-alt", color: "text-blue-500" },
-            { name: "JavaScript", icon: "fab fa-js", color: "text-yellow-400" },
-            { name: "React", icon: "fab fa-react", color: "text-blue-400" },
-            { name: "MongoDB", icon: "fas fa-leaf", color: "text-green-500" },
-            { name: "Git", icon: "fab fa-git-alt", color: "text-orange-600" },
-            { name: "GitHub", icon: "fab fa-github", color: "text-white" },
-            { name: "Java", icon: "fab fa-java", color: "text-red-500" },
-            { name: "DSA", icon: "fas fa-code-branch", color: "text-purple-400" }
-        ];
+        // Organized Skills by Category
+        const skillsData = {
+            programming: [
+                { name: "C", icon: "fas fa-c", color: "text-red-500" },
+                { name: "Java", icon: "fab fa-java", color: "text-red-500" },
+                { name: "Python", icon: "fab fa-python", color: "text-yellow-500" },
+                { name: "JavaScript", icon: "fab fa-js", color: "text-yellow-400" }
+            ],
+            web: [
+                { name: "HTML5", icon: "fab fa-html5", color: "text-orange-500" },
+                { name: "CSS3", icon: "fab fa-css3-alt", color: "text-blue-500" },
+                { name: "React.js", icon: "fab fa-react", color: "text-blue-400" },
+                { name: "Node.js", icon: "fab fa-node-js", color: "text-green-500" },
+                { name: "Express.js", icon: "fas fa-server", color: "text-gray-400" },
+                { name: "REST API", icon: "fas fa-plug", color: "text-purple-400" }
+            ],
+            core: [
+                { name: "OOP", icon: "fas fa-cube", color: "text-indigo-400" },
+                { name: "DSA", icon: "fas fa-code-branch", color: "text-purple-400" }
+            ],
+            tools: [
+                { name: "Git", icon: "fab fa-git-alt", color: "text-orange-600" },
+                { name: "GitHub", icon: "fab fa-github", color: "text-white" }
+            ]
+        };
 
         const certifications = [
             { title: "MongoDB Associate Developer", issuer: "MongoDB, Virtual", icon: "fas fa-database", color: "text-green-400" },
-            { title: "Oracle Architect Associate", issuer: "Oracle, Virtual", icon: "fas fa-cloud", color: "text-red-400" },
             { title: "AWS Certified Cloud Practitioner", issuer: "Amazon, Virtual", icon: "fab fa-aws", color: "text-yellow-500" },
-            { title: "RPA Advanced Developer", issuer: "Automation Anywhere, Virtual", icon: "fas fa-robot", color: "text-blue-400" }
         ];
 
-        // Render Skills
-        const skillsGrid = document.getElementById('skills-grid');
-        skills.forEach(s => {
-            skillsGrid.innerHTML += `
-                <div class="skill-card glass p-8 rounded-2xl flex flex-col items-center text-center group">
-                    <i class="${s.icon} ${s.color} text-4xl mb-4 transition-transform group-hover:scale-110"></i>
-                    <span class="text-white font-bold text-sm uppercase tracking-wider">${s.name}</span>
-                </div>`;
+        // Skills Interaction Logic
+        let currentCategory = 'programming';
+        let autoPlayInterval = null;
+        let categories = Object.keys(skillsData);
+        let currentCategoryIndex = 0;
+        let userInteracted = false;
+
+        const skillsContainer = document.getElementById('skills-container');
+        const categoryButtons = document.querySelectorAll('.skill-category');
+
+        function renderSkills(category) {
+            const skills = skillsData[category];
+            skillsContainer.innerHTML = '';
+
+            skills.forEach((skill) => {
+                const skillCard = document.createElement('div');
+                skillCard.className = `skill-card glass p-8 rounded-2xl flex flex-col items-center text-center group`;
+                skillCard.innerHTML = `
+                    <i class="${skill.icon} ${skill.color} text-4xl mb-4 transition-transform group-hover:scale-110"></i>
+                    <span class="text-white font-bold text-sm uppercase tracking-wider">${skill.name}</span>
+                `;
+                skillsContainer.appendChild(skillCard);
+            });
+        }
+
+        function setActiveCategory(category) {
+            currentCategory = category;
+            userInteracted = true;
+
+            // Update button states
+            categoryButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
+            });
+
+            renderSkills(category);
+        }
+
+        // Event listeners for category buttons
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                currentCategoryIndex = categories.indexOf(category);
+                setActiveCategory(category);
+            });
         });
+
+        // Initial render
+        renderSkills('programming');
 
         // Render Certs
         const certsGrid = document.getElementById('certs-grid');
